@@ -1,0 +1,1097 @@
+
+// Dota Abilities Override File
+"DOTAAbilities"
+{
+  "Version"   "1"
+
+// CF Stuff =======================================================================================
+// ================================================================================================
+// Training Northern Units
+// ================================================================================================
+  "train_northern_wolf"
+  {
+      "BaseClass"             "ability_datadriven"
+      "AbilityTextureName"    "alpha_wolf_command_aura"
+      "MaxLevel"              "1"
+   
+      "AbilityBehavior"    "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_TOGGLE | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+      "AbilityCastPoint"        "0.0"
+      "AbilityCooldown"        "20.0"
+      "AbilityGoldCost"    "0"
+     
+      "OnToggleOn"
+      {
+          "ApplyModifier"
+          {
+              "Target"       "CASTER"
+              "ModifierName" "modifier_toggle"
+          }
+      }
+      "OnToggleOff"
+      {
+          "RemoveModifier"
+          {
+              "Target"       "CASTER"
+              "ModifierName" "modifier_toggle"
+          }
+          "RunScript"
+          {
+            "ScriptFile"    "cf_abilities.lua"
+            "Function"      "TriggerCooldown"
+          }
+      }
+
+      "Modifiers"
+      {
+        "modifier_toggle"
+        {
+            "Passive"               "0"
+            "IsHidden"              "1"
+            "ThinkInterval"  "20.0"
+            "OnIntervalThink"
+            {
+              "SpawnUnit"
+              {
+                  "UnitName"    "northern_wolf"
+                  "Target"      "CASTER"
+                  "UnitCount"   "1"
+                  "UnitLimit"   "0"
+                  "GrantsGold"  "3"
+                  "SpawnRadius" "100"
+                  "OnSpawn"
+                  {
+                      "ApplyModifier"
+                      {
+                          "ModifierName" "modifier_phased"
+                          "Target"       "TARGET"
+                          "Duration"     "0.03"
+                      }
+                      "ApplyModifier"
+                      {
+                          "ModifierName" "modifier_uncontrollable"
+                          "Target"       "TARGET"
+                      }
+                      "RunScript"
+                      {
+                          "ScriptFile"    "cf_abilities.lua"
+                          "Function"      "RallyPointEnemyBase"
+                      }
+                  }
+              }
+            }
+        }
+        "modifier_uncontrollable"
+        {
+                "Passive"               "0"
+                "IsHidden"              "1"
+                "States"
+                {
+                        "MODIFIER_STATE_UNSELECTABLE" "MODIFIER_STATE_VALUE_ENABLED"
+                }
+        }
+      }
+  }
+
+  "train_northern_bear"
+  {
+      "BaseClass"             "ability_datadriven"
+      "AbilityTextureName"    "lone_druid_spirit_bear"
+      "MaxLevel"              "1"
+   
+      "AbilityBehavior"    "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_TOGGLE | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+      "AbilityCastPoint"        "0.0"
+      "AbilityCooldown"        "27.0"
+      "AbilityGoldCost"    "0"
+     
+      "OnToggleOn"
+      {
+          "ApplyModifier"
+          {
+              "Target"       "CASTER"
+              "ModifierName" "modifier_toggle"
+          }
+      }
+      "OnToggleOff"
+      {
+          "RemoveModifier"
+          {
+              "Target"       "CASTER"
+              "ModifierName" "modifier_toggle"
+          }
+          "RunScript"
+          {
+            "ScriptFile"    "cf_abilities.lua"
+            "Function"      "TriggerCooldown"
+          }
+      }
+
+      "Modifiers"
+      {
+        "modifier_toggle"
+        {
+            "Passive"               "0"
+            "IsHidden"              "1"
+            "ThinkInterval"  "27.0"
+            "OnIntervalThink"
+            {
+              "SpawnUnit"
+              {
+                  "UnitName"    "northern_bear"
+                  "Target"      "CASTER"
+                  "UnitCount"   "1"
+                  "UnitLimit"   "0"
+                  "GrantsGold"  "7"
+                  "SpawnRadius" "100"
+                  "OnSpawn"
+                  {
+                      "ApplyModifier"
+                      {
+                          "ModifierName" "modifier_phased"
+                          "Target"       "TARGET"
+                          "Duration"     "0.03"
+                      }
+                      "ApplyModifier"
+                      {
+                          "ModifierName" "modifier_uncontrollable"
+                          "Target"       "TARGET"
+                      }
+                      "RunScript"
+                      {
+                          "ScriptFile"    "cf_abilities.lua"
+                          "Function"      "RallyPointEnemyBase"
+                      }
+                  }
+              }
+            }
+        }
+        "modifier_uncontrollable"
+        {
+                "Passive"               "0"
+                "IsHidden"              "1"
+                "States"
+                {
+                        "MODIFIER_STATE_UNSELECTABLE" "MODIFIER_STATE_VALUE_ENABLED"
+                }
+        }
+      }
+  }
+
+  // ================================================================================================
+  // Building & Upgrading Northern Buildings
+  // ================================================================================================
+
+  "build_northern_melee_stub"
+  {
+    "BaseClass"               "ability_datadriven"
+    "AbilityBehavior"         "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+    "AbilityTextureName"      "dragon_knight_dragon_tail"
+    "AbilityCastPoint"        "0"
+    "AOERadius"               "100"
+    "MaxLevel"            "1"   
+
+    
+    "AbilityCastRange"        "200"
+        
+    "AbilityCooldown"       "0"
+    "AbilityGoldCost"       "15"
+        
+    "OnSpellStart"
+    {
+      "SpawnUnit"
+      {
+        "UnitName"     "northern_melee_stub"
+        "Target"       "POINT"
+        "UnitCount"    "1"
+        "UnitLimit"    "0"
+        "GrantsGold"   "1"
+        "SpawnRadius"  "0"
+        "OnSpawn"
+        {
+          "ApplyModifier"
+          {
+            "ModifierName"  "modifier_phased"
+            "Target"    "TARGET"
+            "Duration"    "0.03"
+          }
+          "RunScript"
+          {
+            "ScriptFile"  "cf_abilities.lua"
+            "Function"    "AddToIncomeLumber"
+          }
+        }
+      }
+    }
+    "AbilitySpecial"
+    {
+        "01"
+        {
+            "var_type"    "FIELD_INTEGER"
+            "to_income"   "15"
+        }
+        "02"
+        {
+            "var_type"    "FIELD_INTEGER"
+            "to_lumber"   "15"
+        }
+    }
+  }
+
+  "build_northern_special_stub"
+  {
+    "BaseClass"               "ability_datadriven"
+    "AbilityBehavior"         "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+    "AbilityTextureName"      "keeper_of_the_light_illuminate"
+    "AbilityCastPoint"        "0"
+    "AOERadius"               "100"
+    "MaxLevel"            "1"   
+
+    
+    "AbilityCastRange"        "200"
+        
+    "AbilityCooldown"       "0"
+    "AbilityGoldCost"       "15"
+    "AbilityManaCost"       "15"
+        
+    "OnSpellStart"
+    {
+      "SpawnUnit"
+      {
+        "UnitName"     "northern_special_stub"
+        "Target"       "POINT"
+        "UnitCount"    "1"
+        "UnitLimit"    "0"
+        "GrantsGold"   "1"
+        "SpawnRadius"  "0"
+        "OnSpawn"
+        {
+          "ApplyModifier"
+          {
+            "ModifierName"  "modifier_phased"
+            "Target"    "TARGET"
+            "Duration"    "0.03"
+          }
+          "RunScript"
+          {
+            "ScriptFile"  "cf_abilities.lua"
+            "Function"    "AddToIncomeLumber"
+          }
+        }
+      }
+    }
+    "AbilitySpecial"
+    {
+        "01"
+        {
+            "var_type"    "FIELD_INTEGER"
+            "to_income"   "8"
+        }
+        "02"
+        {
+            "var_type"    "FIELD_INTEGER"
+            "to_lumber"   "0"
+        }
+    }
+  }
+
+  "upgrade_to_wolf_den"
+  {
+    "BaseClass"                 "ability_datadriven"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+    "AbilityTextureName"      "alpha_wolf_command_aura"
+    "AbilityCastPoint"        "0"
+    "MaxLevel"            "1"
+    "AbilityCooldown"       "0"
+    "AbilityGoldCost"       "100"
+    // End of BuildingHelper info
+    
+    "OnSpellStart"
+    {
+      "RunScript"
+          {
+            "ScriptFile"  "cf_abilities.lua"
+            "Function"    "UpgradeBuilding"
+          }
+    }
+    "AbilitySpecial"
+    {
+        "01"
+        {
+            "var_type"    "FIELD_INTEGER"
+            "unit_ID"     "1"
+        }
+        "02"
+        {
+            "var_type"    "FIELD_INTEGER"
+            "to_income"   "100"
+        }
+        "03"
+        {
+            "var_type"    "FIELD_INTEGER"
+            "to_lumber"   "100"
+        }
+    }
+  }
+
+
+  "upgrade_to_ice_mushroom"
+  {
+    "BaseClass"                 "ability_datadriven"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+    "AbilityTextureName"      "invoker_ice_wall"
+    "AbilityCastPoint"        "0.1"
+    "MaxLevel"            "1"
+    "AbilityCooldown"       "0"
+    "AbilityGoldCost"       "190"
+    "AbilityManaCost"       "350"
+
+    "OnAbilityPhaseStart"
+    {
+      "RunScript"
+      {
+        "ScriptFile"  "cf_abilities.lua"
+        "Function"    "CheckHeroMana"
+      }
+    }
+    "OnSpellStart"
+    {
+      "RunScript"
+          {
+            "ScriptFile"  "cf_abilities.lua"
+            "Function"    "UpgradeBuilding"
+          }
+    }
+    "AbilitySpecial"
+    {
+        "01"
+        {
+            "var_type"    "FIELD_INTEGER"
+            "unit_ID"     "1"
+        }
+        "02"
+        {
+            "var_type"    "FIELD_INTEGER"
+            "to_income"   "80"
+        }
+        "03"
+        {
+            "var_type"    "FIELD_INTEGER"
+            "to_lumber"   "0"
+        }
+    }
+  }
+
+  "upgrade_wolf_den_to_bear_den"
+  {
+    "BaseClass"           "ability_datadriven"
+    "AbilityBehavior"     "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+    "AbilityTextureName"  "lone_druid_spirit_bear"
+    "AbilityCastPoint"    "0"
+    "MaxLevel"            "1"
+    "AbilityCooldown"     "0"
+    "AbilityGoldCost"     "125"
+    
+    "OnSpellStart"
+    {
+      "RunScript"
+          {
+            "ScriptFile"  "cf_abilities.lua"
+            "Function"    "UpgradeBuilding"
+          }
+    }
+    "AbilitySpecial"
+    {
+        "01"
+        {
+            "var_type"    "FIELD_INTEGER"
+            "unit_ID"     "2"
+        }
+        "02"
+        {
+            "var_type"    "FIELD_INTEGER"
+            "to_income"   "125"
+        }
+        "03"
+        {
+            "var_type"    "FIELD_INTEGER"
+            "to_lumber"   "125"
+        }
+    }
+  }
+
+// ================================================================================================
+// Training Human Units
+// ================================================================================================
+  "train_footman"
+  {
+      "BaseClass"             "ability_datadriven"
+      "AbilityTextureName"    "phantom_lancer_juxtapose"
+      "MaxLevel"              "1"
+   
+      "AbilityBehavior"    "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_TOGGLE | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+      "AbilityCastPoint"        "0.0"
+      "AbilityCooldown"        "20.0"
+      "AbilityGoldCost"    "0"
+     
+      "OnToggleOn"
+      {
+          "ApplyModifier"
+          {
+              "Target"       "CASTER"
+              "ModifierName" "modifier_toggle"
+          }
+      }
+      "OnToggleOff"
+      {
+          "RemoveModifier"
+          {
+              "Target"       "CASTER"
+              "ModifierName" "modifier_toggle"
+          }
+          "RunScript"
+          {
+            "ScriptFile"    "cf_abilities.lua"
+            "Function"      "TriggerCooldown"
+          }
+      }
+
+      "Modifiers"
+      {
+        "modifier_toggle"
+        {
+            "Passive"               "0"
+            "IsHidden"              "1"
+            "ThinkInterval"  "20.0"
+            "OnIntervalThink"
+            {
+              "SpawnUnit"
+              {
+                  "UnitName"    "human_footman"
+                  "Target"      "CASTER"
+                  "UnitCount"   "1"
+                  "UnitLimit"   "0"
+                  "GrantsGold"  "3"
+                  "SpawnRadius" "100"
+                  "OnSpawn"
+                  {
+                      "ApplyModifier"
+                      {
+                          "ModifierName" "modifier_phased"
+                          "Target"       "TARGET"
+                          "Duration"     "0.03"
+                      }
+                      "ApplyModifier"
+                      {
+                          "ModifierName" "modifier_uncontrollable"
+                          "Target"       "TARGET"
+                      }
+                      "RunScript"
+                      {
+                          "ScriptFile"    "cf_abilities.lua"
+                          "Function"      "RallyPointEnemyBase"
+                      }
+                  }
+              }
+            }
+        }
+        "modifier_uncontrollable"
+        {
+                "Passive"               "0"
+                "IsHidden"              "1"
+                "States"
+                {
+                        "MODIFIER_STATE_UNSELECTABLE" "MODIFIER_STATE_VALUE_ENABLED"
+                }
+        }
+      }
+  }
+
+  "train_defender"
+  {
+      "BaseClass"             "ability_datadriven"
+      "AbilityTextureName"    "legion_commander_moment_of_courage"
+      "MaxLevel"              "1"
+   
+      "AbilityBehavior"    "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_TOGGLE | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+      "AbilityCastPoint"        "0.0"
+      "AbilityCooldown"        "28.0"
+      "AbilityGoldCost"    "0"
+     
+      "OnToggleOn"
+      {
+          "ApplyModifier"
+          {
+              "Target"       "CASTER"
+              "ModifierName" "modifier_toggle"
+          }
+      }
+      "OnToggleOff"
+      {
+          "RemoveModifier"
+          {
+              "Target"       "CASTER"
+              "ModifierName" "modifier_toggle"
+          }
+          "RunScript"
+          {
+            "ScriptFile"    "cf_abilities.lua"
+            "Function"      "TriggerCooldown"
+          }
+      }
+
+      "Modifiers"
+      {
+        "modifier_toggle"
+        {
+            "Passive"               "0"
+            "IsHidden"              "1"
+            "ThinkInterval"  "28.0"
+            "OnIntervalThink"
+            {
+              "SpawnUnit"
+              {
+                  "UnitName"    "human_defender"
+                  "Target"      "CASTER"
+                  "UnitCount"   "1"
+                  "UnitLimit"   "0"
+                  "GrantsGold"  "8"
+                  "SpawnRadius" "100"
+                  "OnSpawn"
+                  {
+                      "ApplyModifier"
+                      {
+                          "ModifierName" "modifier_phased"
+                          "Target"       "TARGET"
+                          "Duration"     "0.03"
+                      }
+                      "ApplyModifier"
+                      {
+                          "ModifierName" "modifier_uncontrollable"
+                          "Target"       "TARGET"
+                      }
+                      "RunScript"
+                      {
+                          "ScriptFile"    "cf_abilities.lua"
+                          "Function"      "RallyPointEnemyBase"
+                      }
+                  }
+              }
+            }
+        }
+        "modifier_uncontrollable"
+        {
+                "Passive"               "0"
+                "IsHidden"              "1"
+                "States"
+                {
+                        "MODIFIER_STATE_UNSELECTABLE" "MODIFIER_STATE_VALUE_ENABLED"
+                }
+        }
+      }
+  }
+  // ================================================================================================
+  // Building & Upgrading Human Buildings
+  // ================================================================================================
+
+  "build_human_melee_stub"
+  {
+    "BaseClass"               "ability_datadriven"
+    "AbilityBehavior"         "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+    "AbilityTextureName"      "dragon_knight_dragon_tail"
+    "AbilityCastPoint"        "0"
+    "AOERadius"               "100"
+    "MaxLevel"            "1"   
+
+    
+    "AbilityCastRange"        "200"
+        
+    "AbilityCooldown"       "0"
+    "AbilityGoldCost"       "15"
+        
+    "OnSpellStart"
+    {
+      "SpawnUnit"
+      {
+        "UnitName"     "human_melee_stub"
+        "Target"       "POINT"
+        "UnitCount"    "1"
+        "UnitLimit"    "0"
+        "GrantsGold"   "1"
+        "SpawnRadius"  "0"
+        "OnSpawn"
+        {
+          "ApplyModifier"
+          {
+            "ModifierName"  "modifier_phased"
+            "Target"    "TARGET"
+            "Duration"    "0.03"
+          }
+          "RunScript"
+          {
+            "ScriptFile"  "cf_abilities.lua"
+            "Function"    "AddToIncomeLumber"
+          }
+        }
+      }
+    }
+    "AbilitySpecial"
+    {
+        "01"
+        {
+            "var_type"    "FIELD_INTEGER"
+            "to_income"   "15"
+        }
+        "02"
+        {
+            "var_type"    "FIELD_INTEGER"
+            "to_lumber"   "15"
+        }
+    }
+  }
+
+  "build_human_special_stub"
+  {
+    "BaseClass"               "ability_datadriven"
+    "AbilityBehavior"         "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+    "AbilityTextureName"      "keeper_of_the_light_illuminate"
+    "AbilityCastPoint"        "0"
+    "AOERadius"               "100"
+    "MaxLevel"            "1"   
+
+    
+    "AbilityCastRange"        "200"
+        
+    "AbilityCooldown"       "0"
+    "AbilityGoldCost"       "15"
+    "AbilityManaCost"       "15"
+        
+    "OnSpellStart"
+    {
+      "SpawnUnit"
+      {
+        "UnitName"     "human_special_stub"
+        "Target"       "POINT"
+        "UnitCount"    "1"
+        "UnitLimit"    "0"
+        "GrantsGold"   "1"
+        "SpawnRadius"  "0"
+        "OnSpawn"
+        {
+          "ApplyModifier"
+          {
+            "ModifierName"  "modifier_phased"
+            "Target"    "TARGET"
+            "Duration"    "0.03"
+          }
+          "RunScript"
+          {
+            "ScriptFile"  "cf_abilities.lua"
+            "Function"    "AddToIncomeLumber"
+          }
+        }
+      }
+    }
+    "AbilitySpecial"
+    {
+        "01"
+        {
+            "var_type"    "FIELD_INTEGER"
+            "to_income"   "8"
+        }
+        "02"
+        {
+            "var_type"    "FIELD_INTEGER"
+            "to_lumber"   "0"
+        }
+    }
+  }
+  
+  "upgrade_to_barracks"
+  {
+    "BaseClass"                 "ability_datadriven"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+    "AbilityTextureName"      "phantom_lancer_juxtapose"
+    "AbilityCastPoint"        "0"
+    "MaxLevel"            "1"
+    "AbilityCooldown"       "0"
+    "AbilityGoldCost"       "85"
+    
+    "OnSpellStart"
+    {
+      "RunScript"
+          {
+            "ScriptFile"  "cf_abilities.lua"
+            "Function"    "UpgradeBuilding"
+          }
+    }
+    "AbilitySpecial"
+    {
+        "01"
+        {
+            "var_type"    "FIELD_INTEGER"
+            "unit_ID"     "21"
+        }
+        "02"
+        {
+            "var_type"    "FIELD_INTEGER"
+            "to_income"   "85"
+        }
+        "03"
+        {
+            "var_type"    "FIELD_INTEGER"
+            "to_lumber"   "85"
+        }
+    }
+  }
+
+  "upgrade_to_barracks_defender"
+  {
+    "BaseClass"                 "ability_datadriven"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+    "AbilityTextureName"      "legion_commander_moment_of_courage"
+    "AbilityCastPoint"        "0"
+    "MaxLevel"            "1"
+    "AbilityCooldown"       "0"
+    "AbilityGoldCost"       "175"
+    
+    "OnSpellStart"
+    {
+      "RunScript"
+          {
+            "ScriptFile"  "cf_abilities.lua"
+            "Function"    "UpgradeBuilding"
+          }
+    }
+    "AbilitySpecial"
+    {
+        "01"
+        {
+            "var_type"    "FIELD_INTEGER"
+            "unit_ID"     "22"
+        }
+        "02"
+        {
+            "var_type"    "FIELD_INTEGER"
+            "to_income"   "175"
+        }
+        "03"
+        {
+            "var_type"    "FIELD_INTEGER"
+            "to_lumber"   "175"
+        }
+    }
+  }
+// ===================================================================
+//  CF Unit Abilities
+// ===================================================================
+  "northern_wolf_critical_strike"
+  {
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "BaseClass"           "ability_datadriven"
+    "MaxLevel"            "1"
+    "AbilityBehavior"     "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+    "AbilityTextureName"  "chaos_knight_chaos_strike"
+
+    "Modifiers"
+    {
+      "modifier_critical_strike_datadriven"
+      {
+          "Passive"   "1"
+          "IsHidden"  "1"
+  
+          "OnAttackStart"
+          {
+              "RemoveModifier"
+              {
+                  "ModifierName"  "modifier_crirical_strike"
+                  "Target"    "CASTER"
+              }
+  
+              "Random"
+              {
+                  "Chance"  "%crit_chance"
+                  "OnSuccess"
+                  {
+                      "ApplyModifier"
+                      {
+                          "ModifierName"  "modifier_crirical_strike"
+                          "Target"      "CASTER"    
+                      }        
+                  }
+              }
+          }
+      }
+  
+      "modifier_crirical_strike"
+      {
+          "IsHidden"  "1"
+          "Properties"
+          {
+              "MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE" "%crit_damage"
+          }
+  
+          "OnAttackLanded"
+          {
+              "RemoveModifier"
+              {
+                  "ModifierName"  "modifier_crirical_strike"
+                  "Target"      "CASTER"    
+              }
+          }
+      }
+    }
+
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type"          "FIELD_INTEGER"
+        "crit_chance"       "20"
+      }
+      "02"
+      {
+        "var_type"          "FIELD_INTEGER"
+        "crit_damage"       "200"
+      }
+    }
+  }
+
+  "human_defender_evasion"
+  {
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "BaseClass"           "ability_datadriven"
+    "MaxLevel"            "1"
+    "AbilityBehavior"     "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+    "AbilityTextureName"  "phantom_assassin_blur"
+
+    "Modifiers"
+    {
+      "modifier_evasion"
+      {
+        "Passive" "1"
+        "IsHidden"  "1"
+  
+        "Properties"
+        {
+          "MODIFIER_PROPERTY_EVASION_CONSTANT"  "%evasion_chance"
+        }
+      }
+    }
+
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type"        "FIELD_INTEGER"
+        "evasion_chance"  "15"
+      }
+    }
+  }
+
+  "human_defender_spell_shield"
+  {
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "BaseClass"       "ability_datadriven"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+    "AbilityTextureName"      "antimage_spell_shield"
+    
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type"            "FIELD_INTEGER"
+        "spell_shield_resistance"   "50"
+      }
+    }
+
+    "Modifiers"
+    {
+      "modifier_spell_shield_datadriven"
+      {
+        "Passive" "1"
+        "IsHidden"  "1"
+
+        "Properties"
+        {
+          "MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS"  "%spell_shield_resistance"
+        }
+      }
+    }
+  }
+
+  // BROKEN!
+  "human_defender_ranged_block"
+  {
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "BaseClass"             "ability_datadriven"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+    "AbilityTextureName"    "tidehunter_kraken_shell"
+    "Target"
+    {
+      "Center"  "TARGET"
+      "Teams"   "DOTA_UNIT_TARGET_TEAM_BOTH"
+      "Types"   "DOTA_UNIT_TARGET_FLAG_RANGED_ONLY | DOTA_UNIT_TARGET_BASIC"
+    }
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type"        "FIELD_INTEGER"
+        "damage_reduction"    "25"
+      }
+    }
+  }
+//-------------------
+// Dummy stuff
+//-------------------
+  
+  "dummy_unit"
+  {
+    "AbilityBehavior"     "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+    "BaseClass"           "ability_datadriven"
+    "AbilityTextureName"            "rubick_empty1"
+    "MaxLevel"                      "1"
+    
+    "Modifiers"
+    {
+      "dummy_unit"
+      {
+          "Passive"                        "1"
+          "IsHidden"                        "1"    
+          "States"
+          {
+              "MODIFIER_STATE_UNSELECTABLE" "MODIFIER_STATE_VALUE_ENABLED"
+              "MODIFIER_STATE_INVULNERABLE"    "MODIFIER_STATE_VALUE_ENABLED"
+              "MODIFIER_STATE_NOT_ON_MINIMAP" "MODIFIER_STATE_VALUE_ENABLED"
+              "MODIFIER_STATE_NO_HEALTH_BAR"  "MODIFIER_STATE_VALUE_ENABLED"
+          }
+      }
+    }
+  }
+
+  "builder_passive"
+  {
+    "AbilityBehavior"     "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+    "BaseClass"           "ability_datadriven"
+    "AbilityTextureName"            "rubick_empty1"
+    "MaxLevel"                      "1"
+    
+    "Modifiers"
+    {
+      "dummy_unit"
+      {
+          "Passive"                        "1"
+          "IsHidden"                        "1"    
+          "States"
+          {
+              "MODIFIER_STATE_INVULNERABLE"    "MODIFIER_STATE_VALUE_ENABLED"
+              "MODIFIER_STATE_NO_HEALTH_BAR"  "MODIFIER_STATE_VALUE_ENABLED"
+          }
+      }
+    }
+  }
+
+  "ability_building"
+  {
+    "BaseClass"           "ability_datadriven"
+    "MaxLevel"            "1"
+
+    "AbilityBehavior"     "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+
+    "Modifiers"
+    {
+      "modifier_building"
+      {
+        "Passive"     "1"
+        "IsHidden"      "1"
+        "Attributes"    "MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"  
+        "States"
+        {
+          "MODIFIER_STATE_MAGIC_IMMUNE" "MODIFIER_STATE_VALUE_ENABLED" // Makes most abilities don't affect this. Use custom damage
+          //"MODIFIER_STATE_STUNNED" "MODIFIER_STATE_VALUE_ENABLED" // Prevents turning
+          "MODIFIER_STATE_ROOTED"   "MODIFIER_STATE_VALUE_ENABLED" // Prevents moving
+          "MODIFIER_STATE_SPECIALLY_DENIABLE" "MODIFIER_STATE_VALUE_ENABLED" // Allows attacking own buildings
+          "MODIFIER_STATE_LOW_ATTACK_PRIORITY" "MODIFIER_STATE_VALUE_ENABLED" // Makes it a secondary target when A-clicking ground
+        }
+      }
+    }   
+  }
+  
+  "barebones_empty1"
+  {
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    //"ID"              "5343"                            // unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+    "MaxLevel"            "0"
+    "BaseClass"           "ability_datadriven"
+    "AbilityTextureName"            "rubick_empty1"
+  }
+  
+  "barebones_empty2"
+  {
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    //"ID"              "5343"                            // unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+    "MaxLevel"            "0"
+    "BaseClass"           "ability_datadriven"
+    "AbilityTextureName"            "rubick_empty1"
+  }
+  
+  "barebones_empty3"
+  {
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    //"ID"              "5343"                            // unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+    "MaxLevel"            "0"
+    "BaseClass"           "ability_datadriven"
+    "AbilityTextureName"            "rubick_empty1"
+  }
+  
+  "barebones_empty4"
+  {
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    //"ID"              "5343"                            // unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+    "MaxLevel"            "0"
+    "BaseClass"           "ability_datadriven"
+    "AbilityTextureName"            "rubick_empty1"
+  }
+  
+  "barebones_empty5"
+  {
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    //"ID"              "5343"                            // unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+    "MaxLevel"            "0"
+    "BaseClass"           "ability_datadriven"
+    "AbilityTextureName"            "rubick_empty1"
+  }
+  
+  "barebones_empty6"
+  {
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    //"ID"              "5343"                            // unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+    "MaxLevel"            "0"
+    "BaseClass"           "ability_datadriven"
+    "AbilityTextureName"            "rubick_empty1"
+  }
+}
+

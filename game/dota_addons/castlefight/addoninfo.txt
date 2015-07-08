@@ -1,0 +1,8 @@
+"AddonInfo"
+{
+	"TeamCount"		"2"
+	"cf_map"
+	{
+		"MaxPlayers"		"2"
+	}
+}
