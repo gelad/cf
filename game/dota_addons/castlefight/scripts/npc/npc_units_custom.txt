@@ -232,6 +232,77 @@
         "UnitRelationShipClass"     "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_BUILDING"
     }
 
+    //=================================================================================
+    // Northern: Ice Mushroom
+    // Special, attacks air units across the map
+    //=================================================================================
+    "northern_ice_mushroom"
+    {
+        // General
+        //----------------------------------------------------------------
+        "BaseClass"                 "npc_dota_creature"
+        "Model"                     "models/heroes/vengeful/vengeful.vmdl"
+        //models/props_nature/mushroom_wild001.vmdl
+        
+        "ModelScale"                "1.5"
+        "Level"                     "1"
+        "HealthBarOffset"           "250"
+        "HasInventory"              "0"
+        
+        // Abilities
+        //----------------------------------------------------------------
+        "AbilityLayout"             "2"
+        "Ability1"                  "shoot_ice_mushroom"
+        "Ability2"                  "ability_projectile_tracking"
+        "Ability8"                  "ability_building"
+        // Armor
+        //----------------------------------------------------------------
+        "ArmorPhysical"             "5"
+        "MagicalResistance"         "0"
+        
+        // Attack
+        //----------------------------------------------------------------
+        "AttackCapabilities"        "DOTA_UNIT_CAP_NO_ATTACK"
+        "AttackDamageType"          "DAMAGE_TYPE_ArmorPhysical"
+        "AttackDamageMin"           "0"
+        "AttackDamageMax"           "0"
+        
+        // Bounty
+        //----------------------------------------------------------------
+        "BountyGoldMin"             "37.0"
+        "BountyGoldMax"             "37.0"
+        
+        // Bounds
+        //----------------------------------------------------------------
+        "BoundsHullName"            "DOTA_HULL_SIZE_HUGE"
+        "RingRadius"                "100"
+        "CollisionSize"             "125"
+        
+        // Movement
+        //----------------------------------------------------------------
+        "MovementCapabilities"      "DOTA_UNIT_CAP_MOVE_GROUND" // Needed to cast Point abilities
+        "MovementSpeed"             "0"
+        
+        // Status
+        //----------------------------------------------------------------
+        "StatusHealth"              "800"
+        "StatusHealthRegen"         "0.5"
+        "StatusMana"                "1000.1"
+        "StatusManaRegen"           "0.0"
+        
+        // Vision
+        //----------------------------------------------------------------
+        "VisionDaytimeRange"        "1000"
+        "VisionNighttimeRange"      "1000"
+        
+        // Team
+        //----------------------------------------------------------------
+        "TeamName"                  "DOTA_TEAM_NEUTRALS"
+        "CombatClassAttack"         "DOTA_COMBAT_CLASS_ATTACK_BASIC"
+        "CombatClassDefend"         "DOTA_COMBAT_CLASS_DEFEND_STRUCTURE"
+        "UnitRelationShipClass"     "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_BUILDING"
+    }
+
 
 
     //=================================================================================

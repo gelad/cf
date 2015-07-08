@@ -47,19 +47,14 @@ function UpgradeBuilding ( event )
     to_lumber = ability:GetSpecialValueFor("to_lumber")
 
     -- NORTHERN
-    if unit_ID == 1 then
-    	unit_name = "northern_wolf_den"
-    end
-    if unit_ID == 2 then
-    	unit_name = "northern_bear_den"
-    end
+    if unit_ID == 1 then unit_name = "northern_wolf_den"
+    elseif unit_ID == 2 then unit_name = "northern_bear_den"
+    elseif unit_ID == 11 then unit_name = "northern_ice_mushroom"
     -- HUMAN
-    if unit_ID == 21 then
-    	unit_name = "human_barracks"
+    elseif unit_ID == 21 then unit_name = "human_barracks"
+    elseif unit_ID == 22 then unit_name = "human_barracks_defender"
     end
-    if unit_ID == 22 then
-    	unit_name = "human_barracks_defender"
-    end
+
     
     if to_lumber > 0.0 then
     	player:GiveMana(to_lumber+0.01)
@@ -85,6 +80,7 @@ function UpgradeBuilding ( event )
   	building:GetAbilityByIndex(0):ToggleAbility()
 end
 
+-- Add resources, if it's no upgrade ( TODO: make a call from upgrade function?)
 function AddToIncomeLumber ( event )
 	local caster = event.caster
     local playerID = caster:GetPlayerOwnerID()
@@ -101,6 +97,7 @@ function AddToIncomeLumber ( event )
     PlayerResource:AddGoldSpentOnSupport(playerID, to_income)
 end
 
+-- Check hero mana for building purpose (lumber)
 function CheckHeroMana ( event )
 	local caster = event.caster
     local playerID = caster:GetPlayerOwnerID()
@@ -121,7 +118,7 @@ end
 
 
 
--- FROM GREEN TD, CHANGE! ==============================================================================
+-- TODO: FROM GREEN TD, CHANGE! (UNUSED YET) ==============================================================================
 
 function check_terrain (entityKeyValues)
 	local hero = entityKeyValues.caster

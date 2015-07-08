@@ -47,6 +47,7 @@ function Precache( context )
   PrecacheUnitByNameSync("northern_wolf_den", context)
   PrecacheUnitByNameSync("northern_bear", context)
   PrecacheUnitByNameSync("northern_bear_den", context)
+  PrecacheUnitByNameSync("northern_ice_mushroom", context)
 
   PrecacheUnitByNameSync("human_melee_stub", context)
   PrecacheUnitByNameSync("human_special_stub", context)
