@@ -621,7 +621,7 @@
             "Function"      "TriggerCooldown"
           }
       }
-
+      
       "Modifiers"
       {
         "modifier_toggle"
@@ -652,11 +652,6 @@
                           "ModifierName" "modifier_uncontrollable"
                           "Target"       "TARGET"
                       }
-                       "ApplyModifier"
-                      {
-                          "ModifierName" "modifier_flying"
-                          "Target"       "TARGET"
-                      }
                       "RunScript"
                       {
                           "ScriptFile"    "cf_abilities.lua"
@@ -673,15 +668,6 @@
                 "States"
                 {
                         "MODIFIER_STATE_UNSELECTABLE" "MODIFIER_STATE_VALUE_ENABLED"
-                }
-        }
-        "modifier_flying"
-        {
-                "Passive"               "0"
-                "IsHidden"              "1"
-                "States"
-                {
-                        "MODIFIER_STATE_FLYING" "MODIFIER_STATE_VALUE_ENABLED"
                 }
         }
       }
@@ -1336,6 +1322,39 @@
         }
       }
     }   
+  }
+
+  // By default, any unit can attack everything
+  // This disallows attacking air units by stopping their attacks before they go off
+  "ability_prevent_attack_flying"
+  {
+    "BaseClass"                 "ability_datadriven"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+
+    "Modifiers"
+    {
+      "modifier_prevent_attack_flying"
+      {
+        "Passive" "1"
+        "IsHidden"  "1"
+      }
+    }
+  }
+
+  // Used to disallow attacking land units
+  "ability_prevent_attack_ground"
+  {
+    "BaseClass"                 "ability_datadriven"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+
+    "Modifiers"
+    {
+      "modifier_prevent_attack_ground"
+      {
+        "Passive" "1"
+        "IsHidden"  "1"
+      }
+    }
   }
   
   "barebones_empty1"

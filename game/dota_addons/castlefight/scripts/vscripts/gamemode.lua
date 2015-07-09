@@ -28,6 +28,9 @@ require('settings')
 -- events.lua is where you can specify the actions to be taken when any event occurs and is one of the core barebones files.
 require('events')
 
+--  FilterExecuteOrder 
+require('orders')
+
 
 --[[
   This function should be used to set up Async precache calls at the beginning of the gameplay.
@@ -136,6 +139,9 @@ function GameMode:InitGameMode()
   -- This also sets up event hooks for all event handlers in events.lua
   -- Check out internals/gamemode to see/modify the exact code
   GameMode:_InitGameMode()
+
+  -- Filter Execute Order
+    GameRules:GetGameModeEntity():SetExecuteOrderFilter( Dynamic_Wrap( GameMode, "FilterExecuteOrder" ), self )
 
   -- Commands can be registered for debugging purposes or as functions that can be called by the custom Scaleform UI
   Convars:RegisterCommand( "command_example", Dynamic_Wrap(GameMode, 'ExampleConsoleCommand'), "A console command example", FCVAR_CHEAT )
