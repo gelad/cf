@@ -51,10 +51,13 @@ function Precache( context )
 
   PrecacheUnitByNameSync("human_melee_stub", context)
   PrecacheUnitByNameSync("human_special_stub", context)
+  PrecacheUnitByNameSync("human_ranged_stub", context)
   PrecacheUnitByNameSync("human_footman", context)
   PrecacheUnitByNameSync("human_barracks", context)
   PrecacheUnitByNameSync("human_defender", context)
   PrecacheUnitByNameSync("human_barracks_defender", context)
+  PrecacheUnitByNameSync("human_gryphon", context)
+  PrecacheUnitByNameSync("human_gryphon_shrine", context)
 
 
   PrecacheModel("models/props_debris/creep_camp001a.vmdl", context)

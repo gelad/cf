@@ -588,6 +588,104 @@
         }
       }
   }
+
+  "train_gryphon"
+  {
+      "BaseClass"             "ability_datadriven"
+      "AbilityTextureName"    "zuus_thundergods_wrath"
+      "MaxLevel"              "1"
+   
+      "AbilityBehavior"    "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_TOGGLE | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+      "AbilityCastPoint"        "0.0"
+      "AbilityCooldown"        "27.0"
+      "AbilityGoldCost"    "0"
+     
+      "OnToggleOn"
+      {
+          "ApplyModifier"
+          {
+              "Target"       "CASTER"
+              "ModifierName" "modifier_toggle"
+          }
+      }
+      "OnToggleOff"
+      {
+          "RemoveModifier"
+          {
+              "Target"       "CASTER"
+              "ModifierName" "modifier_toggle"
+          }
+          "RunScript"
+          {
+            "ScriptFile"    "cf_abilities.lua"
+            "Function"      "TriggerCooldown"
+          }
+      }
+
+      "Modifiers"
+      {
+        "modifier_toggle"
+        {
+            "Passive"               "0"
+            "IsHidden"              "1"
+            "ThinkInterval"  "27.0"
+            "OnIntervalThink"
+            {
+              "SpawnUnit"
+              {
+                  "UnitName"    "human_gryphon"
+                  "Target"      "CASTER"
+                  "UnitCount"   "1"
+                  "UnitLimit"   "0"
+                  "GrantsGold"  "7"
+                  "SpawnRadius" "100"
+                  "OnSpawn"
+                  {
+                      "ApplyModifier"
+                      {
+                          "ModifierName" "modifier_phased"
+                          "Target"       "TARGET"
+                          "Duration"     "0.03"
+                      }
+                      "ApplyModifier"
+                      {
+                          "ModifierName" "modifier_uncontrollable"
+                          "Target"       "TARGET"
+                      }
+                       "ApplyModifier"
+                      {
+                          "ModifierName" "modifier_flying"
+                          "Target"       "TARGET"
+                      }
+                      "RunScript"
+                      {
+                          "ScriptFile"    "cf_abilities.lua"
+                          "Function"      "RallyPointEnemyBase"
+                      }
+                  }
+              }
+            }
+        }
+        "modifier_uncontrollable"
+        {
+                "Passive"               "0"
+                "IsHidden"              "1"
+                "States"
+                {
+                        "MODIFIER_STATE_UNSELECTABLE" "MODIFIER_STATE_VALUE_ENABLED"
+                }
+        }
+        "modifier_flying"
+        {
+                "Passive"               "0"
+                "IsHidden"              "1"
+                "States"
+                {
+                        "MODIFIER_STATE_FLYING" "MODIFIER_STATE_VALUE_ENABLED"
+                }
+        }
+      }
+  }
   // ================================================================================================
   // Building & Upgrading Human Buildings
   // ================================================================================================
@@ -704,6 +802,62 @@
         }
     }
   }
+
+  "build_human_ranged_stub"
+  {
+    "BaseClass"               "ability_datadriven"
+    "AbilityBehavior"         "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+    "AbilityTextureName"      "mirana_arrow"
+    "AbilityCastPoint"        "0"
+    "AOERadius"               "100"
+    "MaxLevel"            "1"   
+
+    
+    "AbilityCastRange"        "200"
+        
+    "AbilityCooldown"       "0"
+    "AbilityGoldCost"       "15"
+        
+    "OnSpellStart"
+    {
+      "SpawnUnit"
+      {
+        "UnitName"     "human_ranged_stub"
+        "Target"       "POINT"
+        "UnitCount"    "1"
+        "UnitLimit"    "0"
+        "GrantsGold"   "1"
+        "SpawnRadius"  "0"
+        "OnSpawn"
+        {
+          "ApplyModifier"
+          {
+            "ModifierName"  "modifier_phased"
+            "Target"    "TARGET"
+            "Duration"    "0.03"
+          }
+          "RunScript"
+          {
+            "ScriptFile"  "cf_abilities.lua"
+            "Function"    "AddToIncomeLumber"
+          }
+        }
+      }
+    }
+    "AbilitySpecial"
+    {
+        "01"
+        {
+            "var_type"    "FIELD_INTEGER"
+            "to_income"   "15"
+        }
+        "02"
+        {
+            "var_type"    "FIELD_INTEGER"
+            "to_lumber"   "15"
+        }
+    }
+  }
   
   "upgrade_to_barracks"
   {
@@ -777,6 +931,44 @@
         {
             "var_type"    "FIELD_INTEGER"
             "to_lumber"   "175"
+        }
+    }
+  }
+
+  "upgrade_to_gryphon_shrine"
+  {
+    "BaseClass"             "ability_datadriven"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+    "AbilityTextureName"    "zuus_thundergods_wrath"
+    "AbilityCastPoint"      "0"
+    "MaxLevel"              "1"
+    "AbilityCooldown"       "0"
+    "AbilityGoldCost"       "235"
+    
+    "OnSpellStart"
+    {
+      "RunScript"
+          {
+            "ScriptFile"  "cf_abilities.lua"
+            "Function"    "UpgradeBuilding"
+          }
+    }
+    "AbilitySpecial"
+    {
+        "01"
+        {
+            "var_type"    "FIELD_INTEGER"
+            "unit_ID"     "23"
+        }
+        "02"
+        {
+            "var_type"    "FIELD_INTEGER"
+            "to_income"   "235"
+        }
+        "03"
+        {
+            "var_type"    "FIELD_INTEGER"
+            "to_lumber"   "235"
         }
     }
   }

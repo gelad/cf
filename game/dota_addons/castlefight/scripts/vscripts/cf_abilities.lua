@@ -53,6 +53,7 @@ function UpgradeBuilding ( event )
     -- HUMAN
     elseif unit_ID == 21 then unit_name = "human_barracks"
     elseif unit_ID == 22 then unit_name = "human_barracks_defender"
+    elseif unit_ID == 23 then unit_name = "human_gryphon_shrine"
     end
 
     

@@ -738,6 +738,74 @@
     }
 
     //=================================================================================
+    // Human: Ranged Stub
+    // Upgrades to Sniper Hut, Gryphon Shrine
+    //=================================================================================
+    "human_ranged_stub"
+    {
+        // General
+        //----------------------------------------------------------------
+        "BaseClass"                 "npc_dota_creature"
+        "Model"                     "models/items/drow/iceburst_arrow.vmdl"
+        "ModelScale"                "2"
+        "Level"                     "1"
+        "HealthBarOffset"           "200"
+        "HasInventory"              "0"
+        
+        // Abilities
+        //----------------------------------------------------------------
+        "AbilityLayout"             "1"
+        "Ability1"                  "upgrade_to_gryphon_shrine"
+        "Ability8"                  "ability_building"
+        // Armor
+        //----------------------------------------------------------------
+        "ArmorPhysical"             "2"
+        "MagicalResistance"         "0"
+        
+        // Attack
+        //----------------------------------------------------------------
+        "AttackCapabilities"        "DOTA_UNIT_CAP_NO_ATTACK"
+        "AttackDamageType"          "DAMAGE_TYPE_ArmorPhysical"
+        "AttackDamageMin"           "0"
+        "AttackDamageMax"           "0"
+        
+        // Bounty
+        //----------------------------------------------------------------
+        "BountyGoldMin"             "1.0"
+        "BountyGoldMax"             "1.0"
+        
+        // Bounds
+        //----------------------------------------------------------------
+        "BoundsHullName"            "DOTA_HULL_SIZE_HUGE"
+        "RingRadius"                "100"
+        "CollisionSize"             "125"
+        
+        // Movement
+        //----------------------------------------------------------------
+        "MovementCapabilities"      "DOTA_UNIT_CAP_MOVE_NONE" // Needed to cast Point abilities
+        "MovementSpeed"             "0"
+        
+        // Status
+        //----------------------------------------------------------------
+        "StatusHealth"              "100"
+        "StatusHealthRegen"         "0.5"
+        "StatusMana"                "0.0"
+        "StatusManaRegen"           "0.0"
+        
+        // Vision
+        //----------------------------------------------------------------
+        "VisionDaytimeRange"        "900"
+        "VisionNighttimeRange"      "600"
+        
+        // Team
+        //----------------------------------------------------------------
+        "TeamName"                  "DOTA_TEAM_NEUTRALS"
+        "CombatClassAttack"         "DOTA_COMBAT_CLASS_ATTACK_BASIC"
+        "CombatClassDefend"         "DOTA_COMBAT_CLASS_DEFEND_STRUCTURE"
+        "UnitRelationShipClass"     "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_BUILDING"
+    }
+
+    //=================================================================================
     // Human: Footman Barracks
     // Produces footmen
     //=================================================================================
@@ -1037,5 +1105,142 @@
                     "Wearable6" { "ItemDef" "68" }
                 }
         }
+    }
+
+
+    //=================================================================================
+    // Human: Gryphon Shrine
+    // Produces gryphin riders
+    //=================================================================================
+    "human_gryphon_shrine"
+    {
+        // General
+        //----------------------------------------------------------------
+        "BaseClass"                 "npc_dota_creature"
+        "Model"                     "models/props_structures/gryphon_statue001.vmdl"
+        "ModelScale"                "1"
+        "Level"                     "1"
+        "HealthBarOffset"           "220"
+        "HasInventory"              "0"
+        
+        // Abilities
+        //----------------------------------------------------------------
+        "AbilityLayout"             "2"
+        "Ability1"                  "train_gryphon"
+        "Ability8"                  "ability_building" 
+        // Armor
+        //----------------------------------------------------------------
+        "ArmorPhysical"             "5"
+        "MagicalResistance"         "0"
+        
+        // Attack
+        //----------------------------------------------------------------
+        "AttackCapabilities"        "DOTA_UNIT_CAP_NO_ATTACK"
+        "AttackDamageType"          "DAMAGE_TYPE_ArmorPhysical"
+        "AttackDamageMin"           "0"
+        "AttackDamageMax"           "0"
+        
+        // Bounty
+        //----------------------------------------------------------------
+        "BountyGoldMin"             "49.0"
+        "BountyGoldMax"             "49.0"
+        
+        // Bounds
+        //----------------------------------------------------------------
+        "BoundsHullName"            "DOTA_HULL_SIZE_HUGE"
+        "RingRadius"                "100"
+        "CollisionSize"             "125"
+        
+        // Movement
+        //----------------------------------------------------------------
+        "MovementCapabilities"      "DOTA_UNIT_CAP_MOVE_NONE" // Needed to cast Point abilities
+        "MovementSpeed"             "0"
+        
+        // Status
+        //----------------------------------------------------------------
+        "StatusHealth"              "1300"
+        "StatusHealthRegen"         "0.5"
+        "StatusMana"                "0"
+        "StatusManaRegen"           "0"
+        
+        // Vision
+        //----------------------------------------------------------------
+        "VisionDaytimeRange"        "900"
+        "VisionNighttimeRange"      "600"
+        
+        // Team
+        //----------------------------------------------------------------
+        "TeamName"                  "DOTA_TEAM_NEUTRALS"
+        "CombatClassAttack"         "DOTA_COMBAT_CLASS_ATTACK_BASIC"
+        "CombatClassDefend"         "DOTA_COMBAT_CLASS_DEFEND_STRUCTURE"
+        "UnitRelationShipClass"     "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_BUILDING"
+    }
+
+    "human_gryphon"
+    {
+        // General
+        //----------------------------------------------------------------
+        "BaseClass"                 "npc_dota_creature"
+        "Model"                     "models/items/courier/blue_lightning_horse/blue_lightning_horse_flying.vmdl"
+        "ModelScale"                "1.2"
+        "Level"                     "1"
+        "BoundsHullName"            "DOTA_HULL_SIZE_HERO"
+        "ShouldDoFlyHeightVisual"   "1"
+        "HealthBarOffset"           "140"
+        
+        // Abilities
+        //----------------------------------------------------------------
+        //"Ability1"                  "human_storm_hammers_disabled"   //Reference: Asth
+        
+        // Armor
+        //----------------------------------------------------------------
+        "ArmorPhysical"             "0"
+        "MagicalResistance"         "0"
+        
+        // Attack
+        //----------------------------------------------------------------
+        "AttackCapabilities"        "DOTA_UNIT_CAP_RANGED_ATTACK"
+        "AttackDamageMin"           "40.0"
+        "AttackDamageMax"           "54.0"
+        "AttackDamageType"          "DAMAGE_TYPE_ArmorPhysical"
+        "AttackRate"                "2.0"
+        "AttackAnimationPoint"      "0.8"
+        "AttackAcquisitionRange"    "700"
+        "AttackRange"               "450"
+        "ProjectileModel"           "particles/units/heroes/hero_zuus/zuus_base_attack.vpcf"     //Add projectile
+        "ProjectileSpeed"           "1100"
+        
+        // Bounty
+        //----------------------------------------------------------------
+        "BountyGoldMin"             "7"
+        "BountyGoldMax"             "7"
+        
+        // Movement
+        //----------------------------------------------------------------
+        "MovementCapabilities"      "DOTA_UNIT_CAP_MOVE_FLY"
+        "MovementSpeed"             "320"
+        "MovementTurnRate"          "0.4"
+        
+        // Status
+        //----------------------------------------------------------------
+        "StatusHealth"              "500"
+        "StatusHealthRegen"         "0.25"
+        "StatusMana"                "0"
+        "StatusManaRegen"           "0"
+        
+        // Vision
+        //----------------------------------------------------------------
+        "VisionDaytimeRange"        "1600"
+        "VisionNighttimeRange"      "900"
+        
+        // Team
+        //----------------------------------------------------------------
+        "TeamName"                  "DOTA_TEAM_NEUTRALS"
+        "CombatClassAttack"         "DOTA_COMBAT_CLASS_ATTACK_HERO"  //MAGIC - Attacks deal magic damage, ignores physical armor
+        "CombatClassDefend"         "DOTA_COMBAT_CLASS_DEFEND_BASIC"
+        "UnitRelationShipClass"     "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+        
+        // Creature Data
+        //----------------------------------------------------------------
     }
 }
