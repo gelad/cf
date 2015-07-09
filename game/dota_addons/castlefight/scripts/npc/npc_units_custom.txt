@@ -241,8 +241,8 @@
         // General
         //----------------------------------------------------------------
         "BaseClass"                 "npc_dota_creature"
-        "Model"                     "models/heroes/vengeful/vengeful.vmdl"
-        //models/props_nature/mushroom_wild001.vmdl
+        "Model"                     "models/props_nature/mushroom_wild001.vmdl"
+        //models/heroes/vengeful/vengeful.vmdl
         
         "ModelScale"                "1.5"
         "Level"                     "1"
@@ -251,9 +251,8 @@
         
         // Abilities
         //----------------------------------------------------------------
-        "AbilityLayout"             "2"
+        "AbilityLayout"             "1"
         "Ability1"                  "shoot_ice_mushroom"
-        "Ability2"                  "ability_projectile_tracking"
         "Ability8"                  "ability_building"
         // Armor
         //----------------------------------------------------------------
@@ -280,7 +279,7 @@
         
         // Movement
         //----------------------------------------------------------------
-        "MovementCapabilities"      "DOTA_UNIT_CAP_MOVE_GROUND" // Needed to cast Point abilities
+        "MovementCapabilities"      "DOTA_UNIT_CAP_MOVE_NONE" // Needed to cast Point abilities
         "MovementSpeed"             "0"
         
         // Status

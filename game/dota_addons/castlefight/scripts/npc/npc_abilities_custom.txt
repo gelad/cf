@@ -990,7 +990,7 @@
       "precache"
       {
         "particle"  "particles/generic_gameplay/generic_stunned.vpcf"
-        "particle"  "particles/units/heroes/hero_enchantress/enchantress_impetus.vpcf"
+        "particle"  "particles/units/heroes/hero_lich/lich_chain_frost.vpcf"
       }
      
       "OnToggleOn"
@@ -1032,7 +1032,7 @@
                   "Radius"        "%radius"
                   "Teams"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
                   "Types"         "DOTA_UNIT_TARGET_BASIC"
-                  //"ExcludeTypes"  "DOTA_UNIT_TARGET_FLAG_NOT_ANCIENTS" // disabled for testing purpose
+                  "ExcludeTypes"  "DOTA_UNIT_TARGET_FLAG_NOT_ANCIENTS"
                   "MaxTargets"    "1"
                   "Random"        "1"
                 }
@@ -1041,10 +1041,10 @@
                     "TrackingProjectile"
                     {
                       "Target"            "TARGET"
-                      "EffectName"        "particles/units/heroes/hero_enchantress/enchantress_impetus.vpcf"
+                      "EffectName"        "particles/units/heroes/hero_lich/lich_chain_frost.vpcf"
                       "Dodgeable"         "0"
                       "ProvidesVision"    "0"
-                      "MoveSpeed"         "1250"
+                      "MoveSpeed"         "1500"
                       "SourceAttachment"  "DOTA_PROJECTILE_ATTACHMENT_ATTACK_1"
                     }
                 }    
@@ -1070,77 +1070,6 @@
       }
   }
 
-  "ability_projectile_tracking"
-  {
-      // General
-      //-------------------------------------------------------------------------------------
-      "BaseClass" "ability_datadriven" 
-      "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-      "AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_ENEMY"
-      "AbilityUnitTargetType" "DOTA_UNIT_TARGET_BASIC"
-      "AbilityUnitDamageType" "DAMAGE_TYPE_PURE"
-
-      // Stats
-      //-------------------------------------------------------------------------------------
-      "AbilityCastRange" "600"
-      "AbilityDamage" "100"
-
-      // Special
-      //-------------------------------------------------------------------------------------
-      "AbilitySpecial"
-      {
-          "01"
-          {
-              "var_type" "FIELD_INTEGER"
-              "radius" "1000"
-          }
-      }
-
-      "precache"
-      {
-          "particle" "particles/units/heroes/hero_enchantress/enchantress_impetus.vpcf"
-      }
-
-      // Data Driven
-      //-------------------------------------------------------------------------------------
-      "OnSpellStart"
-      {
-          "ActOnTargets"
-          {
-              "Target"
-              {
-                  "Center" "CASTER"
-                  "Radius" "%radius"
-                  "Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY" 
-                  "Types" "DOTA_UNIT_TARGET_BASIC"
-              }
-              "Action"
-              {
-                  "TrackingProjectile"
-                  {
-                      "Target" "TARGET"
-                      "EffectName" "particles/units/heroes/hero_enchantress/enchantress_impetus.vpcf"
-                      "Dodgeable" "1"
-                      "ProvidesVision" "1"
-                      "VisionRadius" "300"
-                      "MoveSpeed" "1000"
-                      "SourceAttachment" "DOTA_PROJECTILE_ATTACHMENT_ATTACK_1"
-                  }
-              }
-          }
-      }
-
-      "OnProjectileHitUnit"
-      {
-          "DeleteOnHit" "1"
-          "Damage"
-          {
-              "Type" "DAMAGE_TYPE_PHYSICAL"
-              "Damage" "%AbilityDamage"
-              "Target" "TARGET"
-          }
-      }
-  } 
 //-------------------
 // Dummy stuff
 //-------------------
@@ -1209,7 +1138,7 @@
         {
           "MODIFIER_STATE_MAGIC_IMMUNE" "MODIFIER_STATE_VALUE_ENABLED" // Makes most abilities don't affect this. Use custom damage
           //"MODIFIER_STATE_STUNNED" "MODIFIER_STATE_VALUE_ENABLED" // Prevents turning
-          //"MODIFIER_STATE_ROOTED"   "MODIFIER_STATE_VALUE_ENABLED" // Prevents moving
+          "MODIFIER_STATE_ROOTED"   "MODIFIER_STATE_VALUE_ENABLED" // Prevents moving
           "MODIFIER_STATE_SPECIALLY_DENIABLE" "MODIFIER_STATE_VALUE_ENABLED" // Allows attacking own buildings
           "MODIFIER_STATE_LOW_ATTACK_PRIORITY" "MODIFIER_STATE_VALUE_ENABLED" // Makes it a secondary target when A-clicking ground
         }
