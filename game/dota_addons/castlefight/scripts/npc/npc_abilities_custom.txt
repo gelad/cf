@@ -1337,6 +1337,14 @@
       {
         "Passive" "1"
         "IsHidden"  "1"
+        "OnAttackStart"
+        {
+          "RunScript"
+          {
+            "ScriptFile"  "units/attack.lua"
+            "Function"    "CheckAttack"
+          }
+        }
       }
     }
   }

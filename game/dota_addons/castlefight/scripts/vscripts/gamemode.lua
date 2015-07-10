@@ -30,6 +30,8 @@ require('events')
 
 --  FilterExecuteOrder 
 require('orders')
+-- abilities
+require('cf_abilities')
 
 
 --[[

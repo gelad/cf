@@ -10,7 +10,20 @@ function RallyPointEnemyBase ( event )
 	local caster = event.caster
     local target = event.target
 
-    print(target:GetTeam())
+    if target:GetTeam() == DOTA_TEAM_GOODGUYS then
+    	position = Vector(7818,-484,310)
+    end
+    if target:GetTeam() == DOTA_TEAM_BADGUYS then
+    	position = Vector(-7715,12,351)
+    end
+
+    ExecuteOrderFromTable({ UnitIndex = target:GetEntityIndex(), 
+                            OrderType = DOTA_UNIT_ORDER_ATTACK_MOVE ,
+                            Position = position, Queue = true })
+end
+
+function RallyPointEnemyBaseUnit ( unit )
+	local target = unit
 
     if target:GetTeam() == DOTA_TEAM_GOODGUYS then
     	position = Vector(7818,-484,310)
